@@ -1,0 +1,206 @@
+body {
+	background-color: #f8f8f8;
+}
+.cf-wrap {
+	width: 1100px;
+	/* width: 1308px; */
+	margin: 0 auto;
+}
+.cf-wrap-content {
+	width: 100%;
+	min-height: 788px;
+    background-color: #fff;
+    border: 1px solid #dadada;
+    overflow: hidden;
+	}
+.cf-collection {
+	clear: both;
+	width: 100%;
+	display: flex;
+	flex-direction: row;/*横排*/
+	flex-wrap: wrap;/*放不下则换行*/
+	justify-content: flex-start;/*靠左对齐*/
+}
+
+.cf-cell-work{
+	/* float: left; */
+	width: 340.6px;
+    height: 180px;
+    padding: 24px 0px 24px 24px;
+    border-right: 1px solid #e8e7e6;
+    border-bottom: 1px solid #e8e7e6;
+    overflow: hidden;
+	clear: both;
+}
+
+.cf-cell-right {
+	border-right: 0px solid #e8e7e6;
+}
+
+/*封面*/
+.ret-works-cover {
+	float: left;
+    width: 135px;
+    overflow: hidden;
+}
+.mod-cover-effect {
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+.mod-cover-list-thumb {
+    width: 133px;
+    height: 177px;
+    overflow: hidden;
+    border: 1px solid #bebebe;
+    background-color: #fff;
+}
+.mod-cover-effect img {
+    position: absolute;
+    top: 0;
+    left: 0;
+	display: block;
+}
+.mod-cover-list-thumb img {
+    width: 133px;
+    display: block;
+}
+.mod-layer-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -webkit-transition: opacity 0.1s ease;
+    -moz-transition: opacity 0.1s ease;
+    -o-transition: opacity 0.1s ease;
+    transition: opacity 0.1s ease;
+}
+.mod-cover-list-updata {
+    position: relative;
+	margin: 0;
+}
+.mod-cover-list-mask {
+    position: relative;
+    left: 1px;
+    *position: static;
+    display: block;
+    width: 100%;
+    height: 22px;
+    margin-top: -22px;
+    background-color: rgba(0,0,0,0.6)!important;
+    background-color: #000;
+    filter: alpha(opacity = 60);
+    color: #fff;
+    text-align: right;
+}
+.mod-cover-list-text {
+    position: relative;
+    line-height: 22px;
+    padding-right: 8px;
+}
+/*作品信息*/
+.ret-works-title {
+    width: 149.6px;
+    height: 20px;
+    margin-bottom: 10px;
+}
+.ret-works-title a {
+    float: left;
+    margin-right: 8px;
+    font-size: 18px;
+    color: #333;
+}
+.ret-works-info {
+	float: left;
+    width: 149.6px;
+    margin-left: 14px;
+	line-height: 1.5;
+}
+
+.ret-works-author {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.ret-works-tags {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 5px;
+	clear: both;
+}
+
+.ret-works-tags a {
+    margin-right: 10px;
+    color: #666;
+	float: left;
+}
+
+.ret-works-decs {
+    height: 54px;
+    margin-top: 5px;
+    color: #999;
+    overflow: hidden;
+}
+
+.ret-works-view {
+    float: left;
+    display: block;
+    width: 90px;
+    height: 36px;
+	line-height: 36px;
+    margin-top: 10px;
+    border-radius: 3px;
+	font-size: 16px;
+    margin-right: 10px;
+    border-color: #e0cfb1;
+}
+
+.ui-btn-pink {
+    box-shadow: 0 0 1px rgba(255,255,255,0.6) inset;
+    border: 1px solid #e0cfb1;
+    color: #b6724d;
+    background: #fffbf6;
+	text-align: center;
+}
+/****底部翻页****/
+.cf-page {
+	width: 100%;
+	height: 72px;
+	/* margin-bottom: 50px; */
+}
+.ret-page-wr {
+    float: right;
+    margin-right: 30px;
+}
+
+.mod-page {
+    overflow: hidden;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.mod-page a:hover, .mod-page a.current {
+    color: #fff;
+    background-color: #ff9a6a;
+    border: 1px solid #ef7559;
+}
+
+.mod-page a {
+    font-size: 14px;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    margin: 0 2px;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+}

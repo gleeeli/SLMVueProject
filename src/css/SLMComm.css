@@ -1,0 +1,40 @@
+
+a {
+	cursor: pointer;
+	text-decoration: none;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 12px;
+    font-family: "宋体", Arial, "Segoe UI", sans-serif;
+    /* vertical-align: baseline; */
+    background: transparent;
+}
+
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    text-align: -webkit-match-parent;
+}
+
+.slm-load-Status {
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	
+	margin: 0 auto;
+}
+
+.slm-load-Status span {
+	vertical-align: middle;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}

@@ -1,0 +1,177 @@
+body {
+	margin: 0;
+}
+
+.wd-main {
+	width: 1100px;
+	margin: 0 auto;
+}
+
+.work-info {
+	width: 100%;
+	height: 332px;
+	/* clear: both; */
+
+	border: 1px solid #cec7bd;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	margin-top: 10px;
+	flex-direction: row;
+	display: flex;
+	align-items: stretch;
+}
+
+.wd-info-left {
+	width: 250px;
+
+	/* float: left; */
+
+
+}
+
+.wd-info-left-img {
+	margin: 34px 20px 0px 20px;
+	width: 210px;
+	height: 280px;
+	background-color: #f3f3f3;
+}
+
+.wd-info-right {
+	/* width: 80%; */
+	height: 332px;
+	/* float: left; */
+	flex: 1;
+}
+
+.wd-info-right-top {
+	border-bottom: 1px dashed #999;
+	margin: 34px 10px 20px 10px;
+	padding-bottom: 20px;
+	text-align: -webkit-left;
+}
+
+.works-intro-title {
+	/*作品名*/
+	padding-bottom: 10px;
+	margin-right: 10px;
+}
+
+.works-intro-title label {
+	font-size: 32px;
+}
+
+.works-intro-digi {
+	/*作者人气*/
+	padding: 20px 0 10px 0;
+	font-size: 12px;
+}
+
+.works-intro-short {
+	/*简介*/
+	width: 100%;
+	height: 54px;
+	overflow: hidden;
+	font-size: 12px;
+}
+
+.wd-info-right-bottom {
+	clear: both;
+}
+
+.works-intro-view {
+	/*阅读按钮*/
+	float: left;
+	width: 112px;
+	height: 45px;
+	line-height: 45px;
+	text-align: center;
+	font-size: 18px;
+	text-shadow: 0 0 0 #fff;
+	margin-right: 10px;
+	background: #f89157;
+	box-shadow: 0 0 1px rgba(255, 255, 255, 0.5) inset;
+	border: 1px solid #ec7d4d;
+	color: #fff;
+	border-radius: 3px;
+	text-decoration: none;
+}
+
+.wd-catalogue-list {
+	margin-top: 15px;
+	margin-bottom: 100px;
+	width: 100%;
+	/* height: 254px; */
+	border: 1px solid #cec7bd;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.wd-catalogue-list-nav {
+	height: 52px;
+	border-bottom: 1px solid #dbd9d6;
+}
+
+.wcl-nav-t {
+	/*章节列表nav*/
+	width: 147px;
+	height: 49px;
+	border-bottom: 4px solid #ff9a6a;
+
+	line-height: 53px;
+	color: #555;
+	font-size: 24px;
+	text-align: center;
+	padding: 0 25px;
+	position: relative;
+	display: block;
+	border-right: 1px solid #dbd9d6;
+}
+
+.works-chapter-list-wr {
+	/*具体章节列表*/
+	width: 100%;
+	/* height: 254px; */
+	overflow: hidden;
+	clear: both;
+}
+
+ol {
+	display: block;
+	list-style-type: decimal;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	padding-inline-start: 40px;
+}
+
+.works-chapter-list {
+	/* height: 250px; */
+	overflow: hidden;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	padding-bottom: 40px;
+}
+
+.works-chapter-list li p {
+	width: 100%;
+	height: 50px;
+	padding-left: 28px;
+	background: url(../resources/images/show/Nav/page_works_chapter_bg.png) 0 bottom no-repeat;
+}
+
+.works-chapter-item {
+	float: left;
+	width: 25%;
+	/* width: 294px; */
+	padding-top: 20px;
+	overflow: hidden;
+}
+
+.works-chapter-item a {
+	margin-right: 5px;
+	font-size: 14px;
+	color: #333;
+	float: left;
+	text-decoration: none;
+	cursor: pointer;
+}

@@ -1,0 +1,127 @@
+.lc-body {
+	background-color: #333333;
+	text-align: center;
+	margin: 0;
+}
+.lc-main-wrap {
+	width: 100%;
+}
+a {
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+}
+.top-nav {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 50px;
+	background-color: rgba(0,0,0,0.3);
+	color: white;
+	line-height: 50px;
+}
+.top-nav-left {
+	float: left;
+	height: 100%;
+	margin-left: 15px;
+}
+.top-nav-left a {
+	font-size: large;
+}
+.bottom-nav {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 50px;
+	background-color: rgba(0,0,0,0.3);
+	color: white;
+	line-height: 50px;
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+.b-a {
+	margin-right: 20px;
+	font-size: 14px;
+}
+.b-a-bad {
+	color: #808080;
+}
+.lc-main-content {
+	width: 980px;
+	height: 100%;
+	display: block;
+	margin: 0 auto;
+	background-color: white;
+}
+.comic-pic-list-all {
+	
+}
+.comic-pic-list {
+    
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.comic-pic-item {
+    width: 100%;
+/*    background: #1F2123 url(data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAANIAAACWCAYAAACrUNY4AAAACXBI…JIkkCSQJJAkkCSBJIEkgSSBJIkkCSQJJAkkCSBJK22PwMAduBtwip7RgoAAAAASUVORK5CYII=) no-repeat scroll center 2.5rem;
+    background-size: 50%; */
+    border-top: 1px solid #353535;
+    border-bottom: 1px solid #353535;
+	}
+	
+.comic-pic-box {
+    width: 100%;
+    -webkit-transition: opacity 800ms ease;
+    transition: opacity 800ms ease;
+}
+
+.comic-pic {
+    display: block;
+    width: 100%;
+}
+
+/**********************目录弹窗的**********************/
+.hiddenDiv {
+	display: none;
+}
+.work-catalogue-list {
+	background-color: rgba(0,0,0,0.5);
+	border-radius: 20px 0px 0px 20px;
+/* 	border: 1px solid black; */
+	width: 230px;
+	height: 100%;
+	position: fixed;
+	right: 0px;
+	top: 70px;
+	overflow-y: scroll;
+}
+
+.work-catalogue-list ul {
+	margin: 0px;
+	padding: 10px;
+}
+
+.work-catalogue-list li {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: -webkit-left;
+	text-align: -moz-left;
+	list-style: none;
+	
+}
+
+.work-catalogue-list li a {
+	cursor: pointer;
+	text-decoration: none;
+	color: #b0b0b0;
+	font-size: 13px;
+}
+.work-catalogue-list li .active {
+	color: #e66201;
+}
+.work-catalogue-list li a:hover {
+	color: #e66201;
+}

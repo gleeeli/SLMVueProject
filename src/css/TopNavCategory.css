@@ -1,0 +1,68 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.nav-category-list-main {
+	width: 100%;
+	background-color: #f8914d;/*#ef8552*/
+}
+
+.nav-category-list {
+	width: 1100px;
+	margin: 0 auto;
+	height: 52px;
+}
+.nav-category-list ul {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	margin-left: 14px;
+}
+.nav-category-list li {
+	float: left;
+	list-style: none;
+	margin: 0;
+    padding: 0;
+	margin-left: -16px;
+}
+
+.nav-category-list .lixiexian {
+	background: url(../resources/images/show/Nav/ac_global_xiexian.png) no-repeat;
+}
+
+.nav-category-list li a {
+	display: block;
+    /* padding: 0 20px; */
+	padding-left: 20px;
+    line-height: 52px;
+    font-size: 14px;
+    color: white;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.nav-category-list li a span {
+    display: block;
+    line-height: 52px;
+    font-size: 16px;
+    text-shadow: rgb(255, 255, 255) 0px 0px 0px;
+    color: rgb(255, 255, 255);
+    padding: 0px 27px 0px 6px;
+}
+
+.nav-category-list .active a {/*选中*/
+	background: url(../resources/images/show/Nav/ac_xielianback.png)  no-repeat;
+}
+
+.nav-category-list .active span {/*选中*/
+	background: url(../resources/images/show/Nav/ac_xielianback.png) right no-repeat;
+}
+
+.nav-category-list a:hover {/*鼠标悬停*/
+	background: url(../resources/images/show/Nav/ac_xielianback.png)  no-repeat;
+}
+
+.nav-category-list a:hover span {/*鼠标悬停*/
+	background: url(../resources/images/show/Nav/ac_xielianback.png) right no-repeat;
+}

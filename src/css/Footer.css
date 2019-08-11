@@ -1,0 +1,33 @@
+.footer {
+    border-top: 1px solid #d0d0d0;
+    background-color: #e0e0e0;
+}
+
+.mt16 {
+    margin-top: 16px;
+}
+
+.cf:before, .cf:after {
+    content: '';
+    display: table;
+}
+
+.footer-wrap {
+    text-align: center;
+    border-top: 1px solid #f6f6f6;
+    background-color: #e0e0e0;
+}
+
+.footer-cont {
+    width: 994px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 23px;
+    overflow: hidden;
+    color: #777;
+    text-shadow: 1px 1px 1px #f0f0f0;
+}
+
+.footer-cont a {
+    color: #666;
+}
