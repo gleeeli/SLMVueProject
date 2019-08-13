@@ -45,7 +45,7 @@ export default new Router({
 			path: '/LookComic',
 			name: 'LookComic',
 			component: LookComic
-}{
+},{
 			path: '/admin/login',
 			name: '/admin/login',
 			component: ALogin
