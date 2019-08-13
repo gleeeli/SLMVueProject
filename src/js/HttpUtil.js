@@ -1,7 +1,13 @@
 import axios from 'axios'
 // 配置项目根如路径
-var URLRoot = 'https://www.feifeicenter.club/'
- 
+// var URLRoot = 'https://www.feifeicenter.club/'
+ let isProduct = 1
+ function getBaseUrl(){
+	 if(isProduct !=1){
+		 return 'http://127.0.0.1:8888/Comic/'
+	 }
+	 return "'https://www.feifeicenter.club/'"
+ }
 // axios请求
 function httpApi (method, url, params) {
   return new Promise((resolve, reject) => {
@@ -10,7 +16,7 @@ function httpApi (method, url, params) {
       url: url,
       data: method === 'POST' || method === 'PUT' ? params : null,
       params: method === 'GET' || method === 'DELETE' ? params : null,
-      baseURL: URLRoot,
+      baseURL: getBaseUrl(),
       withCredentials: false
     }).then(
       (response) => {

@@ -4,7 +4,8 @@ import CategoryLookMore from '../components/CategoryLookMore.vue'
 import Home from '../components/Home.vue'
 import Error404 from '../components/pages/Error404.vue'
 import WorkDetail from '../components/WorkDetail.vue'
-
+import ALogin from '../admin/ALogin.vue'
+import AHome from '../admin/AHome.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -29,6 +30,16 @@ export default new Router({
 			path: '/WorkDetail',
 			name: 'WorkDetail',
 			component: WorkDetail
+		},
+		{
+			path: '/admin/login',
+			name: '/admin/login',
+			component: ALogin
+		},
+		{
+			path: '/admin/home',
+			name: '/admin/home',
+			component: AHome
 		},
 		{
 			path: '*',
