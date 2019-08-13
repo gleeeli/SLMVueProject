@@ -3,32 +3,110 @@
 		<div class="tn-title"></div>
 		<div class="tn-input">
 			<div class="mod-search-input-wr ui-left">
-		                <label for="top-search-input" class="mod-search-label" style="display: block;">请输入作品名称</label>
-		                <input class="mod-search-input ac_input" type="text" id="top-search-input" value="" autocomplete="off">
-						<div class="ac_results" >
-							<ul>
-								<li v-for="item in searchResults">
-									<a href="">{{item.name}}</a>
-								</li>
-							</ul>
-						</div>
-		            </div>
-			<button class="mod-search-submit ui-left ui-text-hide" type="submit">搜索</button>
+				<label for="top-search-input" class="mod-search-label" style="display: block;" v-if="searchKeyWord.length ==0 && isblur">请输入作品名称</label>
+				<input class="mod-search-input ac_input" type="text" id="top-search-input" value="" autocomplete="off" v-model="searchKeyWord"
+				 @focus="inputEvent('focus')" @blur="inputEvent('blur')">
+				<div class="ac_results" v-if="searchResults.length>0 &&(isblur == 0 ||isFocuseInResults)" @mouseenter="mouseEnter"  @mouseleave="mouseLeave">
+					<ul>
+						<li v-for="item in searchResults">
+							<router-link :to="{ path: '/WorkDetail', query: { productId: item.id }}">{{item.name}}</router-link>
+						</li>
+					</ul>
+				</div>
 			</div>
+			<button class="mod-search-submit ui-left ui-text-hide" type="submit" v-on:click="clickToSearch()">搜索</button>
+		</div>
 	</div>
 </template>
 
 <script>
+	import HTTPUtil from '../js/HttpUtil.js'
 	export default {
-	  name: 'Header',
-	  data () {
-	    return {
-	  		  pictures:["https://manhua.qpic.cn/manhua_detail/0/30_19_18_76faf582bb6e0090b92fe4f129249733_16919.jpg/800",
-	  			  "https://manhua.qpic.cn/manhua_detail/0/30_11_27_8d6c234fcdddde443d0631bdf32cb90a_16893.jpg/800",
-	  		  "https://manhua.qpic.cn/manhua_detail/0/30_11_29_ebc6a599e69abc05329a0d1070ff03d5_16894.jpg/800"],
-	  			searchResults:[{name:'gleeeli'},{name:'gleeeli'}]
-	    }
-	  }
+		data() {
+			return {
+				searchResults: [],
+				searchKeyWord: '',
+				isblur: 1,
+				isFocuseInResults:0
+			}
+		},
+		methods: {
+			mouseEnter:function(event) {
+				console.log('鼠标进入x:'+event.offsetX)
+				this.isFocuseInResults = 1;
+			},
+			mouseLeave:function(event) {
+				console.log('鼠标移出x:'+event.offsetX)
+				this.isFocuseInResults = 0;
+			},
+			clickToSearch: function() {
+				this.$router.push({
+					path: '/CategoryLookMore',
+					query: {
+						pageNumber: 1,
+						searchKeyWord: this.searchKeyWord
+					}
+				})
+			},
+			inputEvent: function(type) {
+				if (type == 'focus') {
+					this.isblur = 0;
+					console.log('获得焦点');
+				} else {
+					this.isblur = 1;
+					console.log('失去焦点');
+				}
+			},
+			searchForKeyWord: function(keyWork) {
+				var params = new URLSearchParams();
+				params.append('name', keyWork);
+				params.append('pageNumber', '1');
+				params.append('pageSize', '10');
+
+				HTTPUtil.post('product/serch.do', params)
+					.then(response => {
+						console.log(response.data);
+						if (response.data.code == 0) {
+							let data = response.data.data;
+							this.searchResults = data.list;
+
+						}
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+			},
+			// 键盘事件
+			handleKeyup(event) {
+				const e = event || window.event || arguments.callee.caller.arguments[0]
+				if (!e) return
+				const {
+					key,
+					keyCode
+				} = e
+				console.log(keyCode)
+				console.log(key)
+			}
+		},
+		watch: {
+			'searchKeyWord': function(newvalue) {
+				this.searchKeyWord = newvalue;
+				console.log('输入：' + newvalue)
+				if (newvalue.length > 0) {
+					this.searchForKeyWord(newvalue)
+				} else {
+					this.searchResults = []
+				}
+
+			}
+		},
+		mounted() {
+			let searchKeyWord = this.$route.query.searchKeyWord;
+			if (searchKeyWord) {
+				this.searchKeyWord = searchKeyWord;
+			}
+			window.addEventListener('keyup', this.handleKeyup)
+		}
 	}
 </script>
 

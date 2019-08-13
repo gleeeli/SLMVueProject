@@ -126,7 +126,7 @@
 					<div class="lg_levels">
 						<div class="lg_s" v-for="item in categoryData" v-if="item.items.length > 0">
 							<div class="lg_nav nav_s">
-								<router-link :to="{ path: '/CategoryLookMore', query: { type: item.type }}">{{item.title}}</router-link>
+								<router-link class='nav_title' :to="{ path: '/CategoryLookMore', query: { type: item.type }}">{{item.title}}</router-link>
 								<div class="nav_s_more"><router-link :to="{ path: '/CategoryLookMore', query: { type: item.type }}">查看更多></router-link></div>
 							</div>
 							<div class="lg_content">
@@ -157,16 +157,29 @@
 				</div>
 			</div>
 		</div>
+		<Footer />
 	</div>
 </template>
 
 <script>
-	import Header from './Header.vue'
+	import Header from './pages/Header.vue'
+	import Footer from './pages/Footer.vue'
 	import HTTPUtil from '../js/HttpUtil.js'
 
 	export default {
+		metaInfo:{
+			title:'神龙漫',
+			meta:[{
+				name:'Keywords',
+				content:'神龙漫画网首页,神龙漫画网,神龙漫,漫画列表,免费漫画,在线漫画,漫画大全,动漫之家,漫画网,无翻页漫画,少年漫画,热血漫画,少女漫画,搞笑漫画,古风漫画,优质漫画,H漫,摸鱼,漫画教程'
+			},{
+				name:'Description',
+				content:'神龙漫画网站的首页,漫画资源丰富,交互体验俱佳,看漫画一键滑到低,无需翻页,少年少女漫画为广大青年提供优质健康的漫画内容'
+			}]
+		},
 		components: {
 			Header,
+			Footer
 		},
 		data() {
 			return {

@@ -4,11 +4,17 @@ import CategoryLookMore from '../components/CategoryLookMore.vue'
 import Home from '../components/Home.vue'
 import Error404 from '../components/pages/Error404.vue'
 import WorkDetail from '../components/WorkDetail.vue'
+import LookComic from '../components/LookComic.vue'
+import MetaInfo from 'vue-meta-info'
 
 Vue.use(Router)
+Vue.use(MetaInfo)
 
 export default new Router({
 	mode:'history',
+	scrollBehavior: () => ({
+    y: 0
+  }),
 	routes:[
 		{
 			path: '/',
@@ -18,7 +24,8 @@ export default new Router({
 		{
 			path: '/Home',
 			name: 'Home',
-			redirect: '/'
+			component: Home
+			// redirect: '/'
 		},
 		{
 			path: '/CategoryLookMore',
@@ -29,6 +36,11 @@ export default new Router({
 			path: '/WorkDetail',
 			name: 'WorkDetail',
 			component: WorkDetail
+		},
+		{
+			path: '/LookComic',
+			name: 'LookComic',
+			component: LookComic
 		},
 		{
 			path: '*',

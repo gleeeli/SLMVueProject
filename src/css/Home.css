@@ -12,6 +12,7 @@ body {
 .lg_body_wrap img {
 	vertical-align: middle;
 }
+
 .clear_float {
 	clear: both;
 }
@@ -57,6 +58,10 @@ body {
 	height: 45px;
 	line-height: 45px;	
 }
+.lg_body_content .lg_left .lg_s .lg_nav .nav_title {
+	margin-left: 10px;
+}
+
 .lg_body_content .lg_left .lg_s .lg_nav a {
 	display: block;
 	float: left;

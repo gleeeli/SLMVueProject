@@ -6,8 +6,8 @@
 </template>
 
 <script>
-	import TopNavSearch from './TopNavSearch.vue'
-	import TopNavCategory from './TopNavCategory.vue'
+	import TopNavSearch from '../TopNavSearch.vue'
+	import TopNavCategory from '../TopNavCategory.vue'
 	
 	export default {
 	  components: {
