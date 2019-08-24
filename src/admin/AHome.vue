@@ -1,18 +1,11 @@
 <template>
 	<div>
-			<div class="container">
+			<div class="AHcontainer">
 				<div class="logo">
 					<router-link :to="{ path: '/admin/home'}" replace>神龙漫管理后台</router-link>
 					</div>
-					<ul class="layui-nav right" lay-filter="">
-						<li class="layui-nav-item">
-							<a href="javascript:;">admin
-							<span class="layui-nav-more"></span>
-							</a>
-							</li>
-					</ul>
 			</div>
-			<div class="left-nav">
+			<div class="AHleft-nav">
 				<div id="side-nav">
 					<ul id="nav">
 						<li v-bind:class='{titleCurrent:currentIndex==index}' v-for="(item,index) in titles">

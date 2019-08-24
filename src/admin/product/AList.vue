@@ -1,5 +1,5 @@
 <template>
-	<div class="page-content">
+	<div class="ALpage-content">
 		<ul>
 			<li>作品列表</li>
 		</ul>
@@ -36,10 +36,10 @@
 							</div>
 						</td>
 						<td>
-							<button v-if="item.audit == 0 || item.audit == 2" @click="allowAudit(item)">
+							<button class="ALauditButton" v-if="item.audit == 0 || item.audit == 2" @click="allowAudit(item)">
 								允许通过
 							</button>
-							<button style="position: relative; left: 10px;" v-if="item.audit == 1 || item.audit == 0" 
+							<button class="ALauditButton" style="position: relative; left: 10px;" v-if="item.audit == 1 || item.audit == 0" 
 							@click="refuseAudit(item)">
 								拒绝通过
 							</button>
@@ -51,7 +51,7 @@
 			<div class="layui-card-body ">
 				<div class="page">
 					<button @click="upPageAction()"> << </button>
-					<button v-bind:class='{current:currentIndex==index}'  v-for="(item,index) in pages"
+					<button v-bind:class='{current:(currentIndex-1)==index}'  v-for="(item,index) in pages"
 					 @click="jumpPageAction(item,index)">{{item.name}}</button>
 					 <button @click="nextPageAction()"> >> </button>
 				</div>
@@ -86,7 +86,6 @@
 				this.setAuditAction(item,2);
 			},
 			upPageAction:function(){
-				
 					this.currentIndex = this.pageInfo.prePage;
 					this.getProductListIndex();
 				
@@ -121,7 +120,7 @@
 			getProductListIndex:function(){
 				var params = new URLSearchParams();
 				params.append('pageNumber', this.currentIndex);
-				params.append('pageSize', '20');
+				params.append('pageSize', '12');
 				HTTPUtil.post('product/list.do', params)
 					.then(response => {
 						console.log('图片s：' + JSON.stringify(response.data));
