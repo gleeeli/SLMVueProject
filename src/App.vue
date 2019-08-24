@@ -10,7 +10,7 @@ export default {
   name: 'app',
   computed:{
 	  key(){
-		  return this.$router.path + + Math.random();
+		  return this.$router.path  + Math.random();
 	  }
   }
 }
