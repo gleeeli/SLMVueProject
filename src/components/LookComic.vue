@@ -20,7 +20,7 @@
 			</section>
 			<div class="slm-load-Status" v-if="curLoadIndex < resources.length"><span>加载中...</span></div>
 		</div>
-		<div class="bottom-nav" v-bind:class="{ 'hiddenDiv': isHiddenTopAndBottomNav }">
+		<div class="bottom-nav fix_iphonex" v-bind:class="{ 'hiddenDiv': isHiddenTopAndBottomNav }">
 			<router-link class="logo-bottom" :to="{ path: '/'}"><img src="../resources/images/show/logo_white.png" height="30" /></router-link>
 			<div class="bottom-nav-right">
 				<a class="b-a" v-on:click="clickChptersBtn()">目录</a>

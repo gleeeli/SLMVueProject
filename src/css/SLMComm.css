@@ -38,3 +38,10 @@ li {
 	*display: inline;
 	*zoom: 1;
 }
+
+@media screen and (width: 375px) and (height: 812px){
+    .fix_iphonex {
+        padding-bottom: 34px;
+		box-sizing: content-box;
+    }
+}

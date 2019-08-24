@@ -12,7 +12,11 @@ body {
 	padding: 0px;
 }
 
-.lg_body_wrap img {
+.lg_body_wrap .lg_levels img {
+	vertical-align: middle;
+}
+
+.lg_body_wrap .lg_shop img {
 	vertical-align: middle;
 }
 
