@@ -10,16 +10,17 @@ import MetaInfo from 'vue-meta-info'
 
 import ALogin from '../admin/ALogin.vue'
 import AHome from '../admin/AHome.vue'
+import AHProductList from '../admin/product/AList.vue'
+import AHUserList from '../admin/user/userList.vue'
 Vue.use(Router)
 Vue.use(MetaInfo)
 
 export default new Router({
-	mode:'history',
+	mode: 'history',
 	scrollBehavior: () => ({
-    y: 0
-  }),
-	routes:[
-		{
+		y: 0
+	}),
+	routes: [{
 			path: '/',
 			name: 'HomeDefault',
 			component: Home
@@ -45,7 +46,7 @@ export default new Router({
 			path: '/LookComic',
 			name: 'LookComic',
 			component: LookComic
-},{
+		}, {
 			path: '/admin/login',
 			name: '/admin/login',
 			component: ALogin
@@ -53,7 +54,21 @@ export default new Router({
 		{
 			path: '/admin/home',
 			name: '/admin/home',
-			component: AHome
+			component: AHome,
+			children: [{
+					path: '/admin/home/product/list',
+					component: AHProductList
+				},
+				{
+						path: '/admin/home/user/userList',
+						component: AHUserList
+					},
+				{
+					path: '*',
+					name: 'default',
+					redirect: '/admin/home/product/list'
+				}
+			]
 		},
 		{
 			path: '*',

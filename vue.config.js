@@ -1,6 +1,6 @@
-const PrerenderSPAPlugin = require('prerender-spa-plugin');
-const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
-const path = require('path');
+// const PrerenderSPAPlugin = require('prerender-spa-plugin');
+// const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
+// const path = require('path');
 
 module.exports = {
 	// configureWebpack: () => {
@@ -29,17 +29,17 @@ module.exports = {
 	//     ]
 	//   };
 	// },
-	configureWebpack: {
-        plugins: [
-            new PrerenderSPAPlugin({
-                staticDir: path.join(__dirname, 'dist'),
-                routes: [
-                    '/',
-                    '/Home',
-                ],
-            }),
-        ],
-    },
+	// configureWebpack: {
+ //        plugins: [
+ //            new PrerenderSPAPlugin({
+ //                staticDir: path.join(__dirname, 'dist'),
+ //                routes: [
+ //                    '/',
+ //                    '/Home',
+ //                ],
+ //            }),
+ //        ],
+ //    },
   publicPath: process.env.NODE_ENV === 'production'
     ? '/dist/'
     : '/',

@@ -5,8 +5,6 @@ var URLRoot = 'https://www.feifeicenter.club/'
  function getBaseUrl(){
 	 if(isProduct !=1){
 		 return 'http://127.0.0.1:8888/Comic/'
-	 }else {
-		 
 	 }
 	 return 'https://www.feifeicenter.club/'
  }
