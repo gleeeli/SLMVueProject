@@ -45,7 +45,8 @@ export default new Router({
 			path: '/LookComic',
 			name: 'LookComic',
 			component: LookComic
-},{
+		},
+		{
 			path: '/admin/login',
 			name: '/admin/login',
 			component: ALogin
@@ -54,7 +55,8 @@ export default new Router({
 			path: '/admin/home',
 			name: '/admin/home',
 			component: AHome
-		},
+		}
+		,
 		{
 			path: '*',
 			name: 'default',

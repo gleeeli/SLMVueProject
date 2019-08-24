@@ -1,8 +1,37 @@
 body {
 	background-color: #f8f8f8;
 }
+@media (min-width: 1100px){/*宽度大于1100px*/
+	.cf-wrap {
+		width: 1100px;
+	}
+	
+	.cf-cell-right {
+		border-right: 0px solid #e8e7e6;
+	}
+}
+
+@media (max-width: 1100px){/*宽度小于1100px*/
+	.cf-wrap {
+		width: 100%;
+	}
+}
+
+@media (min-width: 681.2px){/*宽度大于681.2px*/
+	.cf-cell-work{
+		width: 340.6px;
+	}
+	
+}
+
+@media (max-width: 681.2px){/*宽度小于681.2px*/
+	.cf-cell-work{
+		width: 100%;
+	}
+}
+
 .cf-wrap {
-	width: 1100px;
+	/* width: 1100px; */
 	/* width: 1308px; */
 	margin: 0 auto;
 }
@@ -24,17 +53,13 @@ body {
 
 .cf-cell-work{
 	/* float: left; */
-	width: 340.6px;
-    height: 180px;
+	/* width: 340.6px; */
+    /* height: 180px; */
     padding: 24px 0px 24px 24px;
     border-right: 1px solid #e8e7e6;
     border-bottom: 1px solid #e8e7e6;
     overflow: hidden;
 	clear: both;
-}
-
-.cf-cell-right {
-	border-right: 0px solid #e8e7e6;
 }
 
 /*封面*/
@@ -107,12 +132,20 @@ body {
     width: 149.6px;
     height: 20px;
     margin-bottom: 10px;
+
 }
 .ret-works-title a {
     float: left;
     margin-right: 8px;
     font-size: 18px;
     color: #333;
+	text-align: left;
+	
+	width: 100%;
+	
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .ret-works-info {
 	float: left;

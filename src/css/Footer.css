@@ -19,7 +19,9 @@
 }
 
 .footer-cont {
-    width: 994px;
+	box-sizing:border-box;
+    /* width: 994px; */
+	width: 100%;
     margin: 0 auto;
     padding: 20px;
     line-height: 23px;

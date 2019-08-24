@@ -8,7 +8,7 @@ new Vue({
 	router,
 	render: h => h(App),
 	//SEO 添加mounted，不然不会执行预编译
-	mounted() {
-    document.dispatchEvent(new Event('render-event'));
-  }
+	// mounted() {
+ //    document.dispatchEvent(new Event('render-event'));
+ //  }
 }).$mount('#app')

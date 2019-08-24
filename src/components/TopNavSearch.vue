@@ -1,6 +1,7 @@
 <template>
 	<div class="tn-wrap" id="topNavigationId">
-		<div class="tn-title"></div>
+		<div class="tn-title"><img src="../resources/images/show/logo.png" :width="logoWidth" :height="logoHeight" /></div>
+		
 		<div class="tn-input">
 			<div class="mod-search-input-wr ui-left">
 				<label for="top-search-input" class="mod-search-label" style="display: block;" v-if="searchKeyWord.length ==0 && isblur">请输入作品名称</label>
@@ -27,7 +28,9 @@
 				searchResults: [],
 				searchKeyWord: '',
 				isblur: 1,
-				isFocuseInResults:0
+				isFocuseInResults:0,
+				logoWidth:150,
+				logoHeight:76
 			}
 		},
 		methods: {
@@ -106,6 +109,12 @@
 				this.searchKeyWord = searchKeyWord;
 			}
 			window.addEventListener('keyup', this.handleKeyup)
+			
+			var windowHeight = document.documentElement.clientHeight;
+			if(windowHeight > 0){
+				this.logoWidth = windowHeight * 0.19;
+				this.logoHeight = this.logoWidth / 1890.0 * 681;
+			}
 		}
 	}
 </script>

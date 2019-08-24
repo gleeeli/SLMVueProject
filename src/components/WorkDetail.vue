@@ -3,31 +3,8 @@
 		<Header />
 		<div class="wd-main" id="wdWorkDetail">
 			<div class="slm-load-Status" v-if="getLoadStatus() != 1">{{loadStatusText}}</div>
-			<div class="work-info">
-				<div class="wd-info-left">
-					<div class="wd-info-left-img">
-						<img width="210px" height="280px" :src="info.thumUrl" />
-					</div>
-				</div>
-				<div class="wd-info-right">
-					<div class="wd-info-right-top">
-						<p class="works-intro-title">
-							<label>{{info.name}}</label>
-						</p>
-						<p class="works-intro-digi">
-							<label>作者：{{info.author}} 人气：{{info.clickCount}}</label>
-						</p>
-						<p class="works-intro-short">
-							<label>{{info.desciption}}</label>
-						</p>
-
-					</div>
-					<div class="wd-info-right-bottom" v-if="getLoadStatus() == 1">
-						<router-link class="works-intro-view" :title="'开始阅读'+info.name" :to="{ path: '/LookComic', query: {charptId:getChapterData(0,0).id, productId: productId }}">开始阅读</router-link>
-
-					</div>
-				</div>
-			</div>
+			<PWorkDetailInfo :info="info" :firstCharptId="getChapterData(0,0).id" :productId="productId" :loadStatus="getLoadStatus()" v-if="isMobile" />
+			<PcWorkDetailInfo :info="info" :firstCharptId="getChapterData(0,0).id" :productId="productId" :loadStatus="getLoadStatus()" v-if="!isMobile" />
 			<div class="wd-catalogue-list">
 				<div class="wd-catalogue-list-nav">
 					<label class="wcl-nav-t">章节列表</label>
@@ -37,7 +14,7 @@
 						<li v-for="row in rows">
 							<p>
 								<span class="works-chapter-item" v-for="column in getColums(row -1)">
-									<router-link  :title="'开始阅读'+info.name" :to="{ path: '/LookComic', query: {charptId:getChapterData(row-1,column-1).id, productId: productId }}">
+									<router-link :title="'开始阅读'+info.name" :to="{ path: '/LookComic', query: {charptId:getChapterData(row-1,column-1).id, productId: productId }}">
 										{{getChapterData(row-1,column-1).name}}
 									</router-link>
 								</span>
@@ -55,24 +32,29 @@
 <script>
 	import Header from './pages/Header.vue'
 	import Footer from './pages/Footer.vue'
+	import PWorkDetailInfo from './phone/PWorkDetailInfo.vue'
+	import PcWorkDetailInfo from './pc/PcWorkDetailInfo.vue'
 	import HTTPUtil from '../js/HttpUtil.js'
 
 	export default {
-		metaInfo(){
+		metaInfo() {
 			return {
-				title:this.info.name+'-'+'在线漫画-神龙漫官方网站',
-				meta:[{
-					name:'Keywords',
-					content:this.info.name+'漫画,'+this.info.name+'全集,'+this.info.name+'漫画全集,'+this.info.typeName+'在线漫画,'+this.info.typeName+',神龙漫画,神龙漫官方网站'
-				},{
-					name:'Description',
-					content:this.info.desciption
+				title: this.info.name + '-' + '在线漫画-神龙漫官方网站',
+				meta: [{
+					name: 'Keywords',
+					content: this.info.name + '漫画,' + this.info.name + '全集,' + this.info.name + '漫画全集,' + this.info.typeName +
+						'在线漫画,' + this.info.typeName + ',神龙漫画,神龙漫官方网站'
+				}, {
+					name: 'Description',
+					content: this.info.desciption
 				}]
 			}
 		},
 		components: {
 			Header,
-			Footer
+			Footer,
+			PWorkDetailInfo,
+			PcWorkDetailInfo
 		},
 		data() {
 			return {
@@ -87,7 +69,8 @@
 					productId: 0
 				},
 				rows: 0,
-				cataloguelist: []
+				cataloguelist: [],
+				isMobile: false,
 			}
 		},
 		methods: {
@@ -128,6 +111,14 @@
 				}
 
 				return data;
+			},
+			_isMobile() {
+				console.log('测试。。。。')
+				console.log(navigator.userAgent)
+				let flag = navigator.userAgent.match(
+					/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
+				)
+				return flag;
 			}
 		},
 		mounted() {
@@ -185,6 +176,14 @@
 					console.log(error);
 					this.detailStatus = -1;
 				});
+
+			if (this._isMobile()) {
+				this.isMobile = true;
+				console.log('是手机')
+			} else {
+				console.log('是PC')
+				this.isMobile = false;
+			}
 		}
 	}
 </script>
