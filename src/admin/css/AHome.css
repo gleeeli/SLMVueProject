@@ -117,7 +117,8 @@
 }
 .ALpage-content table {
     border-collapse: collapse;
-    border-spacing: 0;
+    border-spacing: 0px 10px;
+	
 }
 
 .ALpage-content .layui-table th {
@@ -174,4 +175,12 @@
 .ALpage-content .ALauditButton{
 	    background-color: #FF5722;
 		color: #fff;
+		height: 30px;
+		line-height: 30px;
+}
+.ALpage-content .ALauditButtonAllow{
+	color: #fff;
+	background-color: #009688;
+	height: 30px;
+	line-height: 30px;
 }

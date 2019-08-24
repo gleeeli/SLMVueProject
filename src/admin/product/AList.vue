@@ -36,7 +36,7 @@
 							</div>
 						</td>
 						<td>
-							<button class="ALauditButton" v-if="item.audit == 0 || item.audit == 2" @click="allowAudit(item)">
+							<button class="ALauditButtonAllow" v-if="item.audit == 0 || item.audit == 2" @click="allowAudit(item)">
 								允许通过
 							</button>
 							<button class="ALauditButton" style="position: relative; left: 10px;" v-if="item.audit == 1 || item.audit == 0" 
