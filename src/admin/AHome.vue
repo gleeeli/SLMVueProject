@@ -50,7 +50,7 @@
 		},
 		computed:{
 			  key(){
-				  return this.$router.path +  Date.parse(new Date());
+				  return this.$router.path +  Math.random();
 			  }
 		}
 	}

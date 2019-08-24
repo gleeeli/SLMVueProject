@@ -55,6 +55,7 @@ export default new Router({
 			path: '/admin/home',
 			name: '/admin/home',
 			component: AHome,
+			redirect:'/admin/home/product/list',
 			children: [{
 					path: '/admin/home/product/list',
 					component: AHProductList
@@ -62,12 +63,7 @@ export default new Router({
 				{
 						path: '/admin/home/user/userList',
 						component: AHUserList
-					},
-				{
-					path: '*',
-					name: 'default',
-					redirect: '/admin/home/product/list'
-				}
+					}
 			]
 		},
 		{
