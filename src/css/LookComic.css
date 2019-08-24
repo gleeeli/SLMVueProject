@@ -3,6 +3,24 @@
 	text-align: center;
 	margin: 0;
 }
+@media (min-width: 1100px){/*宽度大于1100px*/
+	.bottom-nav .logo-bottom {
+		visibility: hidden;
+	}
+	
+	.top-nav .logo-top {
+		
+	}
+}
+
+@media (max-width: 1100px){/*宽度小于1100px*/
+	.bottom-nav .logo-bottom {
+		
+	}
+	.top-nav .logo-top {
+		display: none;
+	}
+}
 .lc-main-wrap {
 	width: 100%;
 	background-color: #333333;
@@ -47,12 +65,16 @@ a {
 .bottom-nav a {
 	font-size: 25px;
 }
-
-.bottom-nav .logo {
-	
+.top-nav .logo-top {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+.bottom-nav .logo-bottom {
+	margin-left: 10px;
 }
 
-.bottom-nav .logo img {
+.bottom-nav .logo-bottom img {
 	vertical-align:middle;
 }
 

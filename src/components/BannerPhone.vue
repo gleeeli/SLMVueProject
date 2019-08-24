@@ -55,17 +55,20 @@
 </script>
 
 <style>
-	.container ul li {
+	table img {
+		vertical-align: top;
+	}
+/* 	.container ul li {
 		margin: auto;
 		display: inline;
 		-webkit-perspective: 1000px;
 		-moz-perspective: 1000px;
 		float: left;
-	}
+	} */
 
-	.container img {
+/* 	.container img {
 		vertical-align: top;
-	}
+	} */
 
 	.lg_relative {
 		position: relative;

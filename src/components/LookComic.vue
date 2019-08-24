@@ -1,6 +1,7 @@
 <template>
 	<div id="LCAllVue" class="lc-main-wrap" @mousemove="touchmove">
 		<div class="top-nav" v-bind:class="{ 'hiddenDiv': isHiddenTopAndBottomNav }">
+			<router-link class="logo-top" :to="{ path: '/'}"><img src="../resources/images/show/logo_white.png" height="30" /></router-link>
 			<!-- <div class="top-nav-left">
 				<router-link :to="{ path: '/'}"><img src="../resources/images/show/logo_white.png" height="30" /></router-link>
 			</div> -->
@@ -20,7 +21,7 @@
 			<div class="slm-load-Status" v-if="curLoadIndex < resources.length"><span>加载中...</span></div>
 		</div>
 		<div class="bottom-nav" v-bind:class="{ 'hiddenDiv': isHiddenTopAndBottomNav }">
-			<router-link class="logo" :to="{ path: '/'}"><img src="../resources/images/show/logo_white.png" height="30" /></router-link>
+			<router-link class="logo-bottom" :to="{ path: '/'}"><img src="../resources/images/show/logo_white.png" height="30" /></router-link>
 			<div class="bottom-nav-right">
 				<a class="b-a" v-on:click="clickChptersBtn()">目录</a>
 				<a v-on:click="clickNext()" class="b-a" v-bind:class="{ 'b-a-bad': nextChapterId<=0 }">下一话</a>

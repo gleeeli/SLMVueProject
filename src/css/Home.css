@@ -61,8 +61,8 @@ body {
 }
 .lg_body_content .lg_left .lg_ring {/*轮播*/
 	width: 100%;
-	height: 363px;
-	line-height: 363px;
+	/* height: 363px; */
+	/* line-height: 363px; */
 	text-align: center;
 	/* margin: 10px 0px; */
 	border: 1px solid lightgray;
