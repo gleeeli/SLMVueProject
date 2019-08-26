@@ -33,6 +33,7 @@
 
 <script>
 	import HTTPUtil from '../js/HttpUtil.js'
+	import CookieUtil from '../js/CookieUtil.js'
 	
 	export default {
 		data() {
@@ -53,7 +54,9 @@
 				 	.then(response => {
 				 		console.log(response.data);
 				 		if (response.data.code == 0) {
-				 			
+				 			this.$AdminDefined.user = response.data.data;
+							console.log("sessionKey="+this.$AdminDefined.user.userExt.sessionKey);
+							CookieUtil.set(CookieUtil.sessionKey,this.$AdminDefined.user.userExt.sessionKey);
 				 			this.$router.push({path:'/admin/home'})
 				 		}
 				 	})

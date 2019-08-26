@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import AdminDefined from './js/AdminDefined.js'
 
+Vue.prototype.$AdminDefined = AdminDefined;
 Vue.config.productionTip = false
 
 new Vue({

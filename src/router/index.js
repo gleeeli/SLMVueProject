@@ -15,6 +15,13 @@ import AHUserList from '../admin/user/userList.vue'
 Vue.use(Router)
 Vue.use(MetaInfo)
 
+//解决点击路由跳转相同地址 会报错
+const originalPush = Router.prototype.push;
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+};
+//end
+
 export default new Router({
 	mode: 'history',
 	scrollBehavior: () => ({
