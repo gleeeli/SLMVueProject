@@ -86,6 +86,7 @@
 		/* height: 332px; */
 		/* float: left; */
 		flex: 1;
+		padding-left: 5px;
 	}
 	
 	.pwd-info-right-top {

@@ -25,8 +25,10 @@ body {
 	.works-chapter-item {
 		width: 100%;
 		padding-left: 28px;
-		padding-bottom: 20px;
 		background: url(../resources/images/show/Nav/page_works_chapter_bg.png) 0 bottom no-repeat;
+	}
+	.works-chapter-item a{
+		padding-bottom: 20px;
 	}
 }
 
@@ -103,7 +105,6 @@ ol {
 	float: left;
 	/* width: 25%; */
 	/* width: 294px; */
-	padding-top: 20px;
 	overflow: hidden;
 }
 
@@ -114,4 +115,7 @@ ol {
 	float: left;
 	text-decoration: none;
 	cursor: pointer;
+	width: 100%;
+    text-align: left;
+	padding-top: 20px;
 }
