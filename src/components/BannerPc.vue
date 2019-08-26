@@ -25,8 +25,8 @@
 
 			<td rowspan="2">
 				<router-link :to="{ path: '/WorkDetail', query: { productId: bannerData[3].id }}">
-					<div class="bpc-block" style="width:338px; height:340px;">
-						<img width="338" :src="''+bannerData[3].thumUrl" height="340">
+					<div class="bpc-block" style="width:308px; height:340px;">
+						<img width="308" :src="''+bannerData[3].thumUrl" height="340">
 					</div>
 				</router-link>
 			</td>
