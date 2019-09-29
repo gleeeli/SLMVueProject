@@ -16,6 +16,7 @@
 				</div>
 			</div>
 			<button class="mod-search-submit ui-left ui-text-hide" type="submit" v-on:click="clickToSearch()">搜索</button>
+			<button class="mod-search-submit ui-left ui-text-hide" type="submit" v-on:click="clickToDreamChat()">愿</button>
 		</div>
 	</div>
 </template>
@@ -49,6 +50,12 @@
 						pageNumber: 1,
 						searchKeyWord: this.searchKeyWord
 					}
+				})
+			},
+			clickToDreamChat:function(){
+				console.log('进入chat');
+				this.$router.push({
+					path:'/home/dreamChat',
 				})
 			},
 			inputEvent: function(type) {

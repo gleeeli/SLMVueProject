@@ -12,6 +12,7 @@ import ALogin from '../admin/ALogin.vue'
 import AHome from '../admin/AHome.vue'
 import AHProductList from '../admin/product/AList.vue'
 import AHUserList from '../admin/user/userList.vue'
+import DreamChat from '../admin/chat/DreamChat.vue'
 Vue.use(Router)
 Vue.use(MetaInfo)
 
@@ -57,6 +58,11 @@ export default new Router({
 			path: '/admin/login',
 			name: '/admin/login',
 			component: ALogin
+		},
+		 {
+			path: '/home/dreamChat',
+			name: '/home/dreamChat',
+			component: DreamChat
 		},
 		{
 			path: '/admin/home',
