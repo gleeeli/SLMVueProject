@@ -1,6 +1,9 @@
 <template>
 	<div class="tn-wrap" id="topNavigationId">
-		<div class="tn-title"><img src="../resources/images/show/logo.png" :width="logoWidth" :height="logoHeight" /></div>
+		<div class="tn-title">
+			<img src="../resources/images/show/logo_icon.png" :width="76" :height="76" />
+			<img src="../resources/images/show/logo.png" :width="logoWidth" :height="logoHeight" />
+			</div>
 		
 		<div class="tn-input">
 			<div class="mod-search-input-wr ui-left">
@@ -31,7 +34,7 @@
 				isblur: 1,
 				isFocuseInResults:0,
 				logoWidth:150,
-				logoHeight:76
+				logoHeight:76,
 			}
 		},
 		methods: {
