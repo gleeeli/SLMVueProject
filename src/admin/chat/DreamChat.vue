@@ -41,6 +41,11 @@
 
 			}
 		},
+		watch: {
+		 
+		      'allMessages': 'scrollToBottom'
+		 
+		},
 		methods: {
 			closeWebSocket: function() {
 				this.websocket.close();
@@ -101,6 +106,17 @@
 				var jsonStr = JSON.stringify(msg);
 				console.log(jsonStr);
 				this.websocket.send(jsonStr);
+			},
+			scrollToBottom: function () {
+			 
+			       this.$nextTick(() => {
+						console.log('将要滑动');
+			             var div = document.getElementById('message')
+			 
+			             div.scrollTop = div.scrollHeight
+			 
+			     })
+			 
 			}
 
 		},
@@ -238,9 +254,9 @@
 				}
 
 				//聊天内容滚到底部
-				var ele = document.getElementById("message");
-					console.log(ele.scrollHeight);
-					ele.scrollTop = ele.scrollHeight;
+				// var ele = document.getElementById("message");
+				// 	console.log(ele.scrollHeight);
+				// 	ele.scrollTop = ele.scrollHeight;
 					
 				
 
