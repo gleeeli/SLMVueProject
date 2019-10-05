@@ -89,7 +89,24 @@
 					/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
 				)
 				return flag;
-			}
+			},
+			addVistoryUser(){
+							//添加游客
+							var params = new URLSearchParams();
+							params.append(CookieUtil.sessionKey, CookieUtil.getBrowserIdentify());
+							console.log("sessionKey is ");
+							console.log(CookieUtil.getBrowserIdentify());
+							HTTPUtil.post('user/visitor/add.do', params)
+								.then(response => {
+									console.log(response.data);
+									if (response.data.code == 0 || response.data.code == -2) {
+										CookieUtil.set(CookieUtil.sessionKey,CookieUtil.getBrowserIdentify());
+									}
+								})
+								.catch(function(error) {
+									console.log(error);
+								});
+						}
 		},
 		mounted() {
 			HTTPUtil.get('home/getadAndBanner.do', null)
@@ -130,22 +147,24 @@
 				if(sessionKey == null){
 					//添加游客
 					console.log('需要添加游客');
-									var params = new URLSearchParams();
-									params.append(CookieUtil.sessionKey, CookieUtil.getBrowserIdentify());
-									console.log("sessionKey is ");
-									console.log(CookieUtil.getBrowserIdentify());
-									HTTPUtil.post('user/visitor/add.do', params)
-										.then(response => {
-											console.log(response.data);
-											if (response.data.code == 0 || response.data.code == -2) {
-												CookieUtil.set(CookieUtil.sessionKey,CookieUtil.getBrowserIdentify());
-											}
-										})
-										.catch(function(error) {
-											console.log(error);
-										});
+									this.addVistoryUser();
 				}else{
 					console.log('sessionKey='+sessionKey);
+					//判断用户是否已经存在了
+										var params = new URLSearchParams();
+										params.append(CookieUtil.sessionKey, sessionKey);
+										HTTPUtil.post('user/getDetail.do', params)
+											.then(response => {
+												console.log(response.data);
+												if (response.data.code != 0) {
+													// CookieUtil.set(CookieUtil.sessionKey,CookieUtil.getBrowserIdentify());
+													//不存在则添加游客
+													this.addVistoryUser();
+												}
+											})
+											.catch(function(error) {
+												console.log(error);
+											});
 				}
 
 				

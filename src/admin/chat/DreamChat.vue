@@ -238,9 +238,9 @@
 				}
 
 				//聊天内容滚到底部
-// 				var ele = document.getElementById("message");
-// 					console.log(ele.scrollHeight);
-// 					ele.scrollTop = ele.scrollHeight;
+				var ele = document.getElementById("message");
+					console.log(ele.scrollHeight);
+					ele.scrollTop = ele.scrollHeight;
 					
 				
 
