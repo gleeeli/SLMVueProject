@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<button class="mod-search-submit ui-left ui-text-hide" type="submit" v-on:click="clickToSearch()">搜索</button>
-			<button class="dreamChatButton" type="submit" v-on:click="clickToDreamChat()"></button>
+			<button class="dreamChatButton" type="submit" v-on:click="clickToDreamChat()">向神龙许愿吧</button>
 		</div>
 	</div>
 </template>

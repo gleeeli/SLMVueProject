@@ -49,14 +49,16 @@ body {
 .wd-catalogue-list-nav {
 	height: 52px;
 	border-bottom: 1px solid #dbd9d6;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .wcl-nav-t {
 	/*章节列表nav*/
 	width: 147px;
 	height: 49px;
-	border-bottom: 4px solid #ff9a6a;
-
+	
 	line-height: 53px;
 	color: #555;
 	font-size: 24px;
@@ -64,58 +66,16 @@ body {
 	padding: 0 25px;
 	position: relative;
 	display: block;
+	border: 0;
 	border-right: 1px solid #dbd9d6;
-}
-
-.works-chapter-list-wr {
-	/*具体章节列表*/
-	width: 100%;
-	/* height: 254px; */
-	overflow: hidden;
-	clear: both;
-}
-
-ol {
-	display: block;
-	list-style-type: decimal;
-	margin-block-start: 1em;
-	margin-block-end: 1em;
-	margin-inline-start: 0px;
-	margin-inline-end: 0px;
-	padding-inline-start: 40px;
-}
-
-.works-chapter-list {
-	/* height: 250px; */
-	overflow: hidden;
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	padding-bottom: 40px;
-}
-
-.works-chapter-list li p {
-	width: 100%;
-	/* height: 50px; */
-	
-	background: url(../resources/images/show/Nav/page_works_chapter_bg.png) 0 bottom no-repeat;
-}
-
-.works-chapter-item {
-	float: left;
-	/* width: 25%; */
-	/* width: 294px; */
-	overflow: hidden;
-}
-
-.works-chapter-item a {
-	margin-right: 5px;
-	font-size: 14px;
-	color: #333;
-	float: left;
-	text-decoration: none;
+	background-color: transparent;
+	outline: none;
 	cursor: pointer;
-	width: 100%;
-    text-align: left;
-	padding-top: 20px;
+	
 }
+
+.wcl-nav-t-active {
+	border-bottom: 4px solid #ff9a6a;
+}
+
+

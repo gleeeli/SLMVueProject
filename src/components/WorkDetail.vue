@@ -7,21 +7,11 @@
 			<PcWorkDetailInfo :info="info" :firstCharptId="getChapterData(0,0).id" :productId="productId" :loadStatus="getLoadStatus()" v-if="!isMobile" />
 			<div class="wd-catalogue-list">
 				<div class="wd-catalogue-list-nav">
-					<label class="wcl-nav-t">章节列表</label>
+					<router-link v-bind:class="{'wcl-nav-t-active':curSelColumn==0}" class="wcl-nav-t"  :to="{ path: '/WorkDetail/list', query: { productId: productId,curSelColumn:0}}" >章节列表</router-link>
+					<router-link v-bind:class="{'wcl-nav-t-active':curSelColumn==1}" class="wcl-nav-t" :to="{ path: '/WorkDetail/comment', query: { productId: productId,curSelColumn:1  }}" >评论区</router-link>
 				</div>
-				<div class="works-chapter-list-wr">
-					<ol class="works-chapter-list">
-						<li v-for="row in rows">
-							<p>
-								<span class="works-chapter-item" v-for="column in getColums(row -1)">
-									<router-link :title="'开始阅读'+info.name" :to="{ path: '/LookComic', query: {charptId:getChapterData(row-1,column-1).id, productId: productId }}">
-										{{getChapterData(row-1,column-1).name}}
-									</router-link>
-								</span>
-							</p>
-						</li>
-					</ol>
-				</div>
+				<router-view :key='key' ></router-view>
+
 			</div>
 		</div>
 		<Footer />
@@ -60,7 +50,6 @@
 			return {
 				loadStatusText: '',
 				detailStatus: 0,
-				catelistStatus: 0,
 				productId: 0,
 				info: {
 					name: "",
@@ -71,14 +60,15 @@
 				rows: 0,
 				cataloguelist: [],
 				isMobile: false,
+				curSelColumn:0,
 			}
 		},
 		methods: {
 			getLoadStatus: function(curRow) {
-				if (this.detailStatus == 0 || this.catelistStatus == 0) {
+				if (this.detailStatus == 0) {
 					this.loadStatusText = '正在努力加载···'
 					return 0; //正在加载
-				} else if (this.detailStatus == 1 && this.catelistStatus == 1) {
+				} else if (this.detailStatus == 1) {
 					this.loadStatusText = ''
 					return 1; //加载完成
 				} else {
@@ -123,35 +113,15 @@
 		},
 		mounted() {
 			let productId = this.$route.query.productId;
-			var params = new URLSearchParams();
+			let curSelColumn = this.$route.query.curSelColumn;
 			if (productId) {
 				this.productId = productId;
-				params.append('productId', productId);
 			}
-
-			params.append('pageNumber', '1');
-			params.append('pageSize', '10000');
-
-			HTTPUtil.post('product/chapter/list.do', params)
-				.then(response => {
-					console.log(response.data);
-
-					if (response.data.code == 0) {
-						let data = response.data.data;
-						let list = data.list;
-						let rows = Math.ceil(list.length / 4.0);
-						this.rows = rows;
-						this.cataloguelist = list;
-						console.log('行数:' + this.rows + '长度：' + list.length + '\n');
-						this.catelistStatus = 1;
-					} else {
-						this.catelistStatus = -1;
-					}
-				})
-				.catch(function(error) {
-					console.log(error);
-					this.catelistStatus = -1;
-				});
+			
+			if(curSelColumn) {
+				this.curSelColumn = curSelColumn;
+			}
+			console.log('当前选中：'+curSelColumn);
 
 			var params1 = new URLSearchParams();
 			if (productId) {
@@ -184,6 +154,11 @@
 				console.log('是PC')
 				this.isMobile = false;
 			}
+		},
+		computed:{
+			  key(){
+				  return this.$router.path  + Math.random();
+			  }
 		}
 	}
 </script>

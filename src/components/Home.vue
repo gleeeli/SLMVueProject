@@ -102,7 +102,7 @@
 						this.adData = data.Ad.items;
 						// this.categoryData = data.Category;
 						console.log('banner:' + this.bannerData.length);
-						// console.log('categoryData:' + JSON.stringify(this.categoryData));
+						console.log('categoryData:' + JSON.stringify(this.bannerData));
 					}
 				})
 				.catch(function(error) {
