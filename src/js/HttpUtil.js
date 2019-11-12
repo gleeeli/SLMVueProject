@@ -1,19 +1,20 @@
 import axios from 'axios'
 // 配置项目根如路径
-var URLRoot = 'https://www.feifeicenter.club/'
+var URLRoot = 'http://120.79.79.211/'
  let isProduct = 1
  function getBaseUrl(){
 	 if(isProduct !=1){
 		 return 'http://127.0.0.1:8888/Comic/'
 	 }
-	 return 'https://www.feifeicenter.club/'
+	 return 'http://120.79.79.211/'
  }
  
  function getWebsocketBaseUrl (){
 	 if(isProduct != 1){
 		 return 'ws://localhost:8888/Comic/websocket/';
 	 }
-	 return 'wss://www.feifeicenter.club:443/websocket/';
+	 //wss://www.feifeicenter.club:443/websocket/
+	 return 'ws://120.79.79.211:80/websocket/';
  }
  
 // axios请求
