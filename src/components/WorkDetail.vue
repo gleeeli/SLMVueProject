@@ -3,8 +3,9 @@
 		<Header />
 		<div class="wd-main" id="wdWorkDetail">
 			<div class="slm-load-Status" v-if="getLoadStatus() != 1">{{loadStatusText}}</div>
-			<PWorkDetailInfo :info="info" :firstCharptId="getChapterData(0,0).id" :productId="productId" :loadStatus="getLoadStatus()" v-if="isMobile" />
-			<PcWorkDetailInfo :info="info" :firstCharptId="getChapterData(0,0).id" :productId="productId" :loadStatus="getLoadStatus()" v-if="!isMobile" />
+			<!-- <PWorkDetailInfo :info="info" :firstCharptId="getChapterData(0,0).id" :productId="productId" :loadStatus="getLoadStatus()" v-if="isMobile" /> -->
+			<PWorkDetailInfo :info="info" :firstCharptId="firstCharptId" :productId="productId" :loadStatus="getLoadStatus()" v-if="isMobile" />
+			<PcWorkDetailInfo :info="info" :firstCharptId="firstCharptId" :productId="productId" :loadStatus="getLoadStatus()" v-if="!isMobile" />
 			<div class="wd-catalogue-list">
 				<div class="wd-catalogue-list-nav">
 					<router-link v-bind:class="{'wcl-nav-t-active':curSelColumn==0}" class="wcl-nav-t"  :to="{ path: '/WorkDetail/list', query: { productId: productId,curSelColumn:0}}" >章节列表</router-link>
@@ -61,6 +62,7 @@
 				cataloguelist: [],
 				isMobile: false,
 				curSelColumn:0,
+				firstCharptId:0,
 			}
 		},
 		methods: {
@@ -137,6 +139,7 @@
 						let info = data.info;
 						this.info = info;
 						this.detailStatus = 1;
+						this.firstCharptId = data.firstCharptId;
 						//document.title = this.info.name;
 					} else {
 						this.detailStatus = -1;
