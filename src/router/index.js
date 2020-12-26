@@ -27,7 +27,7 @@ Router.prototype.push = function push(location) {
 //end
 
 export default new Router({
-	mode: 'history',
+	mode: 'hash',
 	scrollBehavior: () => ({
 		y: 0
 	}),

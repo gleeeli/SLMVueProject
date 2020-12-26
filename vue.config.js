@@ -40,9 +40,13 @@ module.exports = {
  //            }),
  //        ],
  //    },
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/dist/'
-    : '/',
+ assetsDir: 'static',
+     parallel: false,
+	 //此外为./打出来的dist本地文件访问不会白屏
+	  publicPath: './',
+  // publicPath: process.env.NODE_ENV === 'production'
+  //   ? './dist/'
+  //   : '/',
 	 productionSourceMap: false
 }
 
