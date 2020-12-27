@@ -91,7 +91,7 @@
 		
 		    //获取焦点
 			 $("#top-search-input").focus(function() {
-			 	that.isblur = false;
+			 	this.isblur = false;
 			     
 			   	if(isHaveSearchValue()){
 			   		showHidddenResult(true);
