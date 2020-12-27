@@ -109,7 +109,7 @@
 			let productId = this.$route.query.productId;
 			// let productId = getQueryVariable('productId');
 			this.productId = productId;
-			//获取本话所有图片
+			//获取本话所有图片dd
 			let charptId = this.$route.query.charptId;
 			// let charptId = getQueryVariable('charptId');
 			this.activeChapterId = charptId;
