@@ -28,6 +28,7 @@
 		name: 'BannerPhone',
 		props: ["imgArray"],
 		data() {
+			let that = this
 			return {
 				isShowPreNext: false,
 				bannerSwiper: null,
@@ -49,18 +50,10 @@
 					},
 					on: {
 						touchStart: function(swiper, event) {
-							if(this.timer != null) {
-								clearInterval(this.timer);
-								this.timer = null;
-							}
-							
-							
+							that.destoryTimer()
 						},
 						touchEnd: function(swiper, event) {
-							if (this.timer == null) {
-								this.timer = setInterval(this.timeInterAction, 1000)
-							}
-							
+							that.startTimer()
 						},
 					}
 				},
@@ -86,16 +79,27 @@
 				console.log("jquery imgs监听到窗口变化");
 				that.bCellSize = that.getImgsLayout(0)
 			});
+			that.startTimer()
 
-			this.timer = setInterval(this.timeInterAction, 4000)
-
+			this.$once('hook:beforeDestroy', () => {
+				that.destoryTimer()
+				console.log("停止定时器，banner 控制器销毁");
+			})
 		},
 		methods: {
-			timeInterAction() {
-				this.mySwiper.slideNext(300, false)
+			startTimer: function() {
+				if (this.timer == null) {
+					this.timer = setInterval(this.timeInterAction, 4000)
+				}
 			},
-			onSlideChange() {
-				console.log('slide change')
+			destoryTimer: function() {
+				if (this.timer != null) {
+					clearInterval(this.timer);
+					this.timer = null;
+				}
+			},
+			timeInterAction: function() {
+				this.mySwiper.slideNext(300, false)
 			},
 			getImgsLayout: function(index) { //高度需要变化
 				var widht = 0;
