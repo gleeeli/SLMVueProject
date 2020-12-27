@@ -50,13 +50,14 @@
 
 <script>
 	import $ from 'jquery'
-	import HTTPUtil from '../js/HttpUtil.js'
+	import HttpUtil from '../js/HttpUtil.js'
 	import UserInfoManager from "../js/UserInfoManager.js"
 	import SLMUtil from '../js/SLMUtil.js'
 	import SLMCommUI from "../js/SLMCommUI.js"
 	
 	
 	let searchForKeyWord = SLMUtil.getQueryVariable("keyword")
+	var isEnterResult = false;
 	export default {
 		  data () {
 		    return {
@@ -73,16 +74,17 @@
 						this.searchKeyWord = newvalue;
 						console.log('输入：' + newvalue)
 						if (newvalue.length > 0) {
-		showHidddenResult(true);
+		this.showHidddenResult(true);
 							this.searchForKeyWord(newvalue);
 						} else {
-		showHidddenResult(false);
+		this.showHidddenResult(false);
 							this.searchResults = []
 						}
 		
 					}
 				},
 		  mounted () {
+			  let that = this
 			  $("#showSelectedListID").css({"display":"block"})
 			  console.log("判断用户是否登录");
 			  if(UserInfoManager.isLogined()) {
@@ -91,10 +93,10 @@
 		
 		    //获取焦点
 			 $("#top-search-input").focus(function() {
-			 	this.isblur = false;
+			 	that.isblur = false;
 			     
-			   	if(isHaveSearchValue()){
-			   		showHidddenResult(true);
+			   	if(that.isHaveSearchValue()){
+			   		that.showHidddenResult(true);
 			   	}
 			 });
 			 
@@ -102,14 +104,31 @@
 			 $("#top-search-input").blur(function() {
 		that.isblur = true;
 				 if(!isEnterResult){//没有移动到结果div
-					 showHidddenResult(false);
+					 that.showHidddenResult(false);
 				 }
 				 
+			 });
+			 
+			 //进入搜索结果的div
+			 $("#ac_results").mouseenter(function() {
+			 	isEnterResult = true;
+			 });
+			 
+			 $("#ac_results").mouseleave(function() {
+			 	isEnterResult = false;
+			 	/* 	 showHidddenResult(false); */
 			 });
 		  },
 		methods: {
 			clickToDreamChat:function(){//许愿
 				window.location.href = "${pageContext.request.contextPath}/views/Chat/DreamChat.html"
+				// this.$router.push({
+				// 	path: '/CategoryLookMore',
+				// 	query: {
+				// 		pageNumber: 1,
+				// 		keyword: this.searchKeyWord
+				// 	}
+				// })
 			},
 			showLoginView:function() {
 				let windowWidth = $(window).width();
@@ -166,7 +185,7 @@
 				
 				HttpUtil.post('product/serch.do', params)
 					.then(response => {
-						console.log(response.data);
+						console.log(JSON.stringify(response.data));
 						if (response.data.code == 0) {
 							let data = response.data.data;
 							that.searchResults = data.list;
@@ -178,7 +197,28 @@
 					});		
 					},
 			clickToSearch: function() {
-				window.location.href = '${pageContext.request.contextPath}/product/search?keyword='+this.searchKeyWord;
+				this.$router.push({
+					path: '/CategoryLookMore',
+					query: {
+						pageNumber: 1,
+						keyword: this.searchKeyWord
+					}
+				})
+			},
+			showHidddenResult:function (isShow) {
+				if (isShow) {
+					$("#ac_results").show();
+				} else {
+					$("#ac_results").hide();
+				}
+			
+			},
+			isHaveSearchValue:function () {
+				var value = $("#top-search-input").val();
+				if (value.length > 0) {
+					return true;
+				}
+				return false;
 			}
 		}
 	}
