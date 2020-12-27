@@ -55,15 +55,13 @@
 	import SLMUtil from '../js/SLMUtil.js'
 	import SLMCommUI from "../js/SLMCommUI.js"
 	
-	
-	let searchForKeyWord = SLMUtil.getQueryVariable("keyword")
 	var isEnterResult = false;
 	export default {
 		  data () {
 		    return {
 				isLogined:false,
 				searchResults: [],
-				searchKeyWord: searchForKeyWord ? searchForKeyWord:"",
+				searchKeyWord: this.$route.query.keyword ? this.$route.query.keyword:"",
 				isblur: 1,
 				headImgUrl:"../resources/images/defaultAdminHead.png",
 				isShowHeadListView:false,

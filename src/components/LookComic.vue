@@ -75,8 +75,67 @@
 				chapterName: '',
 				curLoadIndex: 0,
 				isEnterNavScope: false,
-				// windowHeight:document.body.clientHeight 
+				isEnterLoginView:false,//鼠标是否进入登录按钮视图
+				defaultImg:"../resources/images/show/custom.jpg",
+				paginationVo:{"pageSize":100,"pageNo":1,"firstResult":0,"nextPage":0,"prePage":0,"totalCount":0,"totalPage":0,"firstPage":true,"lastPage":true},//目录
+				isRequesting:false,
+				bottomBarHeight:50,
 			}
+		},
+		mounted() {
+			let productId = this.$route.query.productId;
+			// let productId = getQueryVariable('productId');
+			this.productId = productId;
+			//获取本话所有图片
+			let charptId = this.$route.query.charptId;
+			// let charptId = getQueryVariable('charptId');
+			this.activeChapterId = charptId;
+		
+			var params = new URLSearchParams();
+			if (productId) {
+				params.append('productId', productId);
+			}
+			if (charptId) {
+				params.append('chapterId', charptId);
+			}
+			params.append('pageNumber', '1');
+			params.append('pageSize', '200');
+		
+			console.log('请求参数：' + charptId + 'pid:' + productId)
+			HTTPUtil.post('product/getChapter.do', params)
+				.then(response => {
+					// console.log('图片s：' + JSON.stringify(response.data));
+		
+					if (response.data.code == 0) {
+						let Chapt = response.data.data.Chapter;
+						let info = Chapt.episodeVos[0];
+		
+						this.resources = info.resources;
+						if (this.resources.length > 0) {
+							this.curLoadIndex = 0;
+							this.pictures.push(this.resources[this.curLoadIndex]);
+						}
+						this.nextChapterId = Chapt.nextChapterId;
+						this.upChapterId = Chapt.upChapterId;
+						this.chapterName = Chapt.name;
+						console.log('长度：' + this.pictures[0] + '\n');
+						this.productName = Chapt.productName;
+						document.title = this.productName;
+					}
+				})
+				.catch(function(error) {
+					console.log(error);
+				});
+		
+			let content = document.getElementById("wdCatalogueList")
+			content.style.height = window.innerHeight - 140 + "px"
+			window.onresize = function() {
+				let content = document.getElementById("wdCatalogueList")
+				content.style.height = window.innerHeight - 140 + "px"
+			}
+			console.log('*****监听滚动到底');
+			//监听滚动到底
+			window.addEventListener('scroll', this.handleScroll, true);
 		},
 		methods: {
 			clickSpaceArea: function(event) {
@@ -188,62 +247,8 @@
 					}
 				}
 			}
-		},
-		mounted() {
-			let productId = this.$route.query.productId;
-			// let productId = getQueryVariable('productId');
-			this.productId = productId;
-			//获取本话所有图片
-			let charptId = this.$route.query.charptId;
-			// let charptId = getQueryVariable('charptId');
-			this.activeChapterId = charptId;
-
-			var params = new URLSearchParams();
-			if (productId) {
-				params.append('productId', productId);
-			}
-			if (charptId) {
-				params.append('chapterId', charptId);
-			}
-			params.append('pageNumber', '1');
-			params.append('pageSize', '200');
-
-			console.log('请求参数：' + charptId + 'pid:' + productId)
-			HTTPUtil.post('product/getChapter.do', params)
-				.then(response => {
-					// console.log('图片s：' + JSON.stringify(response.data));
-
-					if (response.data.code == 0) {
-						let Chapt = response.data.data.Chapter;
-						let info = Chapt.episodeVos[0];
-
-						this.resources = info.resources;
-						if (this.resources.length > 0) {
-							this.curLoadIndex = 0;
-							this.pictures.push(this.resources[this.curLoadIndex]);
-						}
-						this.nextChapterId = Chapt.nextChapterId;
-						this.upChapterId = Chapt.upChapterId;
-						this.chapterName = Chapt.name;
-						console.log('长度：' + this.pictures[0] + '\n');
-						this.productName = Chapt.productName;
-						document.title = this.productName;
-					}
-				})
-				.catch(function(error) {
-					console.log(error);
-				});
-
-			let content = document.getElementById("wdCatalogueList")
-			content.style.height = window.innerHeight - 140 + "px"
-			window.onresize = function() {
-				let content = document.getElementById("wdCatalogueList")
-				content.style.height = window.innerHeight - 140 + "px"
-			}
-			console.log('*****监听滚动到底');
-			//监听滚动到底
-			window.addEventListener('scroll', this.handleScroll, true);
 		}
+		
 	}
 </script>
 
