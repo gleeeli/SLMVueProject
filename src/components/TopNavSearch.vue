@@ -1,134 +1,190 @@
 <template>
 	<div class="tn-wrap" id="topNavigationId">
-		<div class="tn-title">
-			<img src="../resources/images/show/logo_icon.png" :width="76" :height="76" />
-			<img src="../resources/images/show/logo.png" :width="logoWidth" :height="logoHeight" />
-			</div>
-		
+		<div class="tn-title" id="tn-title">
+			<router-link class="icon_img" :to="{ path: '/'}"></router-link>
+			<router-link class="word_img" :to="{ path: '/'}">
+				<img src="../resources/images/show/logo.png"
+					 width="150" />
+			</router-link>
+		</div>
+	
 		<div class="tn-input">
 			<div class="mod-search-input-wr ui-left">
-				<label for="top-search-input" class="mod-search-label" style="display: block;" v-if="searchKeyWord.length ==0 && isblur">请输入作品名称</label>
-				<input class="mod-search-input ac_input" type="text" id="top-search-input" value="" autocomplete="off" v-model="searchKeyWord"
-				 @focus="inputEvent('focus')" @blur="inputEvent('blur')">
-				<div class="ac_results" v-if="searchResults.length>0 &&(isblur == 0 ||isFocuseInResults)" @mouseenter="mouseEnter"  @mouseleave="mouseLeave">
-					<ul>
+				<label v-if="searchKeyWord.length == 0 && isblur" class="mod-search-label" id="mod-search-label" style="display: block;">请输入作品名称</label>
+				<input class="mod-search-input ac_input" type="text" id="top-search-input" value="" autocomplete="off" v-model="searchKeyWord">
+				<div class="ac_results" id="ac_results">
+					<ul id="ac_results_ul">
 						<li v-for="item in searchResults">
 							<router-link :to="{ path: '/WorkDetail', query: { productId: item.id }}">{{item.name}}</router-link>
+							</li>
 						</li>
 					</ul>
 				</div>
 			</div>
 			<button class="mod-search-submit ui-left ui-text-hide" type="submit" v-on:click="clickToSearch()">搜索</button>
-			<button class="dreamChatButton" type="submit" v-on:click="clickToDreamChat()">许愿</button>
+		</div>
+		<div class="user">
+			<div class="logined" v-if="isLogined">
+				<button v-on:click="lookUserInfo" @mouseenter="hoverUserButton(1)" @mousedown="hoverUserButton(2)" @mouseleave="hoverUserButton(0)">
+					<img class="head_img" :src="headImgUrl" width="40px" height="40px">
+				</button>
+				<div id="showSelectedListID" class="showSelectedList" style="display: none;" @mouseenter="hoverUserButton(1)"
+				 @mouseleave="hoverUserButton(0)">
+					<div class="slcontent">
+						<ul>
+							<li><a href="${pageContext.request.contextPath}/views/User/User.html" target="_blank">我是读者</a></li>
+							<li><a href="${pageContext.request.contextPath}/views/User/author.html" target="_blank">我是作者</a></li>
+							<li><a href="javascript:;" v-on:click="clickToDreamChat">我要许愿</a></li>
+							<li><a href="javascript:;" v-on:click="loginOut">退出登录</a></li>
+						</ul>
+					</div>
+	
+				</div>
+			</div>
+			<div class="login" v-else>
+				<button v-on:click="showLoginView">登录</button>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	import $ from 'jquery'
 	import HTTPUtil from '../js/HttpUtil.js'
+	import UserInfoManager from "../js/UserInfoManager.js"
+	import SLMUtil from '../js/SLMUtil.js'
+	import SLMCommUI from "../js/SLMCommUI.js"
+	
+	
+	let searchForKeyWord = SLMUtil.getQueryVariable("keyword")
 	export default {
-		data() {
-			return {
+		  data () {
+		    return {
+				isLogined:false,
 				searchResults: [],
-				searchKeyWord: '',
+				searchKeyWord: searchForKeyWord ? searchForKeyWord:"",
 				isblur: 1,
-				isFocuseInResults:0,
-				logoWidth:150,
-				logoHeight:76,
-			}
-		},
-		methods: {
-			mouseEnter:function(event) {
-				console.log('鼠标进入x:'+event.offsetX)
-				this.isFocuseInResults = 1;
-			},
-			mouseLeave:function(event) {
-				console.log('鼠标移出x:'+event.offsetX)
-				this.isFocuseInResults = 0;
-			},
-			clickToSearch: function() {
-				this.$router.push({
-					path: '/CategoryLookMore',
-					query: {
-						pageNumber: 1,
-						searchKeyWord: this.searchKeyWord
+				headImgUrl:"../resources/images/defaultAdminHead.png",
+				isShowHeadListView:false,
+		    }
+		  },
+		  watch: {
+					'searchKeyWord': function(newvalue) {
+						this.searchKeyWord = newvalue;
+						console.log('输入：' + newvalue)
+						if (newvalue.length > 0) {
+		showHidddenResult(true);
+							this.searchForKeyWord(newvalue);
+						} else {
+		showHidddenResult(false);
+							this.searchResults = []
+						}
+		
 					}
-				})
+				},
+		  mounted () {
+			  $("#showSelectedListID").css({"display":"block"})
+			  console.log("判断用户是否登录");
+			  if(UserInfoManager.isLogined()) {
+				  this.loginSuccess();
+			  }
+		
+		    //获取焦点
+			 $("#top-search-input").focus(function() {
+			 	that.isblur = false;
+			     
+			   	if(isHaveSearchValue()){
+			   		showHidddenResult(true);
+			   	}
+			 });
+			 
+			//失去焦点
+			 $("#top-search-input").blur(function() {
+		that.isblur = true;
+				 if(!isEnterResult){//没有移动到结果div
+					 showHidddenResult(false);
+				 }
+				 
+			 });
+		  },
+		methods: {
+			clickToDreamChat:function(){//许愿
+				window.location.href = "${pageContext.request.contextPath}/views/Chat/DreamChat.html"
 			},
-			clickToDreamChat:function(){
-				console.log('进入chat');
-				this.$router.push({
-					path:'/home/dreamChat',
-				})
+			showLoginView:function() {
+				let windowWidth = $(window).width();
+				let windowHeight = $(window).height();
+				console.log("宽高："+windowWidth +'windowHeight:'+windowHeight)
+				//$("#loginWrapAlert").css({"width":windowWidth,"height":windowHeight,"display":"flex"})
 			},
-			inputEvent: function(type) {
-				if (type == 'focus') {
-					this.isblur = 0;
-					console.log('获得焦点');
-				} else {
-					this.isblur = 1;
-					console.log('失去焦点');
+			lookUserInfo:function() {
+				if (SLMCommUI.isMobile()){
+					console.log("lookUserInfo-"+!this.isShowHeadListView)
+					this.showSelectedView(!this.isShowHeadListView)
+				}		  
+			},
+			showSelectedView:function(show) {
+				this.isShowHeadListView = show
+				if(show) {
+					$("#showSelectedListID").css({"display":"block"})
+				}else {
+					$("#showSelectedListID").css({"display":"none"})
 				}
 			},
+			hoverUserButton:function(index) {
+				console.log("---鼠标事件:"+index)
+				if(index == 1) {//进入
+					this.showSelectedView(true)
+				}else if(index == 2) {//点击
+				if (SLMCommUI.isMobile()){
+					return
+				}
+					this.showSelectedView(true)
+				}else {//0 离开
+				this.showSelectedView(false)
+				}
+			},
+			loginSuccess:function() {
+				this.isLogined = UserInfoManager.isLogined();
+				console.log("判断用户是否登录完成---"+this.isLogined);
+				$("#loginWrapAlert").css({"display":"none"})
+				console.log("获取到用户头像："+UserInfoManager.getInfo().headUrl);
+				this.headImgUrl = UserInfoManager.getInfo().headUrl;
+			},
+			loginOut:function() {
+				console.log('退出登录。。。。qq2')
+				UserInfoManager.removeInfo()
+				this.isLogined = false;
+			},
 			searchForKeyWord: function(keyWork) {
+				console.log("开始查询："+keyWork);
+				let that = this;
 				var params = new URLSearchParams();
 				params.append('name', keyWork);
 				params.append('pageNumber', '1');
 				params.append('pageSize', '10');
-
-				HTTPUtil.post('product/serch.do', params)
+				
+				HttpUtil.post('product/serch.do', params)
 					.then(response => {
 						console.log(response.data);
 						if (response.data.code == 0) {
 							let data = response.data.data;
-							this.searchResults = data.list;
-
+							that.searchResults = data.list;
+				
 						}
 					})
 					.catch(function(error) {
 						console.log(error);
-					});
-			},
-			// 键盘事件
-			handleKeyup(event) {
-				const e = event || window.event || arguments.callee.caller.arguments[0]
-				if (!e) return
-				const {
-					key,
-					keyCode
-				} = e
-				console.log(keyCode)
-				console.log(key)
-			}
-		},
-		watch: {
-			'searchKeyWord': function(newvalue) {
-				this.searchKeyWord = newvalue;
-				console.log('输入：' + newvalue)
-				if (newvalue.length > 0) {
-					this.searchForKeyWord(newvalue)
-				} else {
-					this.searchResults = []
-				}
-
-			}
-		},
-		mounted() {
-			let searchKeyWord = this.$route.query.searchKeyWord;
-			if (searchKeyWord) {
-				this.searchKeyWord = searchKeyWord;
-			}
-			window.addEventListener('keyup', this.handleKeyup)
-			
-			var windowHeight = document.documentElement.clientHeight;
-			if(windowHeight > 0){
-				this.logoWidth = windowHeight * 0.19;
-				this.logoHeight = this.logoWidth / 1890.0 * 681;
+					});		
+					},
+			clickToSearch: function() {
+				window.location.href = '${pageContext.request.contextPath}/product/search?keyword='+this.searchKeyWord;
 			}
 		}
 	}
 </script>
 
-<style>
-	@import "../css/TopNavigation.css";
+<style scoped>
+	@import "../css/TopNavSearch.css";
+	@import "../css/SLMComm.css";
 </style>
